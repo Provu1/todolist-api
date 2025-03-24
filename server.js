@@ -4,12 +4,24 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json()); 
 // Connect MongoDB
-mongoose.connect('mongodb://localhost:27017/tododb', {
+require('dotenv').config();
+
+
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.error(err));
+
+
+
+// mongoose.connect('mongodb+srv://pro119449:123deep@testdata.ezut1.mongodb.net/', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => console.log('MongoDB Connected'))
+// .catch(err => console.error(err));
 
 // ToDoList Schema
 const todoSchema = new mongoose.Schema({
